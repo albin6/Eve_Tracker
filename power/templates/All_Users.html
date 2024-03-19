@@ -1,0 +1,107 @@
+{% extends "adminhead.html" %}
+{% load static %}
+{% block content %}
+
+<!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="col-md-12 m-b-30">
+                                <!-- begin page title -->
+                                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                                    <div class="page-title mb-2 mb-sm-0">
+                                        <h1>View Users</h1>
+                                    </div>
+                                    <div class="ml-auto d-flex align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb p-0 m-b-0">
+                                                <li class="breadcrumb-item">
+                                                    <a href="#"><i class="ti ti-home"></i></a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    Home
+                                                </li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">View Users</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        
+            {% if msg != ""%}
+            <script>alert("{{msg}}");</script>
+            {% endif %}
+                        <!-- end row -->
+                        <!-- begin row -->
+                        <div class="row editable-wrapper" style="width:1000px">
+                            <div class="col-lg-12 ">
+                                <div class="card card-statistics">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="table" class="table display responsive nowrap table-light table-bordered">
+                                                <thead class="bg-primary text-white">
+                                                   <th  >Sl.No.</th>
+        <th >User Name</th>
+        <th  >User Address</th>
+        <th  >User Email</th>
+        <th >User Phone</th>
+        <th >Location Details</th>
+        <th >User Aadhar</th>
+        <th >#</th>
+    </tr>
+    </thead>
+    {% for datas in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{datas.User_name}}</td>
+        <td>{{datas.User_address}}
+            <br>
+            Dob:-{{datas.User_dob}}
+        </td>
+        <td>{{datas.User_email}}</td>
+        <td>{{datas.User_phone}}</td>
+        <td>{{datas.User_state}}
+<br>
+District:-{{datas.User_district}}<br>
+Village:-{{datas.User_village}}<br>
+   
+        </td>
+        <td>{{datas.User_aadhar}}</td>
+            <br> 
+        <td><a href="{% url 'remove_usr'%}?id={{datas.Log_id_id}}" class="btn btn-danger">Remove</a></td>
+    
+      
+        </tr>
+        {% endfor %}
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+{% endblock %}

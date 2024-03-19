@@ -1,0 +1,311 @@
+{% extends "userhead.html" %}
+{% load static %}
+{% block content %}
+      <!-- begin app-main -->
+      <div class="app-main" id="main">
+        <!-- begin container-fluid -->
+        <div class="container-fluid">
+            <!-- begin row -->
+            <div class="row">
+                <div class="col-md-12 m-b-30">
+                    <!-- begin page title -->
+                    <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                        <div class="page-title mb-2 mb-sm-0">
+                            <h1>Profile</h1>
+                        </div>
+                        <div class="ml-auto d-flex align-items-center">
+                            <nav>
+                                <ol class="breadcrumb p-0 m-b-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="#"><i class="ti ti-home"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        User
+                                    </li>
+                                    <li class="breadcrumb-item active text-primary" aria-current="page">Profile</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                </div>
+            </div>
+
+            {% if msg != ""%}
+<script>alert("{{msg}}");</script>
+{% endif %}
+            <!-- end row -->
+            <!-- start Validation row -->
+ <!-- start Validation row -->
+ <div class="row formavlidation-wrapper" style="width:880px">
+    <div class="col-xl-6">
+        <div class="card card-statistics">
+            <div class="card-header">
+                <div class="card-heading">
+                    <h4 class="card-title">Profile</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                  <div class="alert alert-success"> {{message }}</div>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                    <form id="myform" method="post" class="form-horizontal"  action="{% url 'Profile' %}">
+                        {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label" for="fname">Name</label>
+                        <div class="mb-2">
+                            <input type="text" class="form-control" id="" name="t1" placeholder="Name" value="{{data.User_name}}" readonly />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="lname">Phone No</label>
+                        <div class="mb-2">
+                            <input type="number" class="form-control" id="phn" onblur="auphoness();"  value="{{data.User_phone}}" name="t3" placeholder="Phone Number" />
+                        </div>
+                    </div>
+                
+                   
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="uemail">Address</label>
+                        <div class="mb-2">
+                            <textarea  class="form-control" id="" name="t6" placeholder="Address" >{{data.User_address}}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="uemail">Email</label>
+                        <div class="mb-2">
+                            <input type="text" class="form-control" id="ema" onblur="auemailss();" name="t2" value="{{data.User_email}}" placeholder="Email" />
+                        </div>
+                    </div>
+
+                  
+                 
+                  
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Update</button>
+                    </div>
+                </form>
+                <script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+                <script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+                <script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+                <script>
+                (function ($, W, D)
+                {
+                var JQUERY4U = {};
+                JQUERY4U.UTIL =
+                {
+                setupFormValidation: function ()
+                {
+                $.validator.addMethod(
+                "regex",
+                function(value, element, regexp) {
+                var check = false;
+                return this.optional(element) || regexp.test(value);
+                },
+                "Not a valid Input."
+                );
+                
+                //form validation rules
+                $("#myform").validate({
+                rules: {
+                    t1: {
+						  required: true,
+						  regex : /^[A-Za-z ]+$/,
+						  minlength: 3,
+
+						},
+					
+					
+						t6: {
+						  required: true,
+
+
+						},
+                        t5: {
+						  required: true,
+
+
+						},
+						t4: {
+						  required: true,
+						 
+
+						},
+						t3: {
+							required: true,
+							digits:true,
+							   minlength: 10,
+							   maxlength: 10,
+							   regex : /^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[6789]\d{9}$/
+						},
+						
+
+						t2: {
+						 required: true,
+						 regex :  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+						},
+						t7: {
+							required: true,
+							regex : /^[A-Za-z0-9@]+$/,
+							minlength: 5,
+							maxlength: 15,
+
+						},
+						t8: {
+							required: true,
+							 regex : /^[A-Za-z0-9@#*]+$/,
+							 minlength: 5,
+							maxlength: 15,
+
+						},
+					
+                                    
+                                      },
+                                      messages: {
+                
+                                        
+                      },
+                submitHandler: function (form) {
+                form.submit();
+                }
+                });
+                }
+                }
+                //when the dom has loaded setup form validation rules
+                $(D).ready(function ($) {
+                JQUERY4U.UTIL.setupFormValidation();
+                });
+                })(jQuery, window, document);
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function getDateDiffInYears(date1, date2) {
+    var dateParts1 = date1.split('-')
+    , dateParts2 = date2.split('-')
+    , d1 = new Date(dateParts1[0], dateParts1[1]-1, dateParts1[2])
+    , d2 = new Date(dateParts2[0], dateParts2[1]-1, dateParts2[2])
+    
+    return new Date(d2 - d1).getYear() - new Date(0).getYear() + 1;
+    }
+    function formatDate(date) {
+    var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+    
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    
+    return [year, month, day].join('-');
+    }
+    
+    function ageCalculator()
+    {
+    var sendDate =document.getElementById("date2").value;
+    var inputDate = new Date(sendDate);
+    // Get today's date
+    var todaysDate = new Date();
+    var date1 = formatDate(inputDate);
+    var date2 = formatDate(todaysDate);
+    // call setHours to take the time out of the comparison
+    if(inputDate.setHours(0,0,0,0) >= todaysDate.setHours(0,0,0,0)) {
+    alert('The date of birth date should not be greater than or equal to today!');
+    }
+    var diff = getDateDiffInYears(date1,date2);
+    if(diff<18)
+    {
+    alert("Your age should not be less than 18 years");
+    $("#date2").val('');
+    $("#date2").focus();
+    }
+    
+    }
+    function aunamess()
+    {
+    var x =document.getElementById("nam").value;
+    var letters = /^[A-Z a-z ]+$/
+    // Get today's date
+    if(!x.match(letters))
+    {
+     alert("Name should be Aphabet");
+    $("#nam").val('');
+    }
+    
+    }
+    function usernamess()
+    {
+    var x =document.getElementById("usernam").value;
+    var letters = /^[A-Z a-z ]+$/
+    // Get today's date
+    if(!x.match(letters))
+    {
+     alert("Name should be Aphabet");
+    $("#usernam").val('');
+    }
+    
+    }
+   
+   
+    
+    function aupass()
+    {
+    var x =document.getElementById("autpass").value;
+    
+    // Get today's date
+    if(x.length >8||x.length <8)
+    {
+     alert("Password should be 8 Character in length");
+    $("#autpass").val('');
+    }
+    
+    }
+    function usspass()
+    {
+    var x =document.getElementById("uspass").value;
+    
+    // Get today's date
+    if(x.length >8||x.length <8)
+    {
+     alert("Password should be 8 Character in length");
+    $("#uspass").val('');
+    }
+    
+    }
+    </script>
+    
+    
+    
+    
+    
+    {% endblock %}

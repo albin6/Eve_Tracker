@@ -1,0 +1,166 @@
+ {% extends "indexhead.html" %}
+
+{% block content %}
+ <script>
+     function val(x)
+     {
+      var alp=/^[a-zA-Z]+$/
+   var num=/^[0-9]+$/
+           if(!x.t1.value.match(alp))
+        {
+            alert('must fill a valid name');
+            x.t1.focus();
+            x.t1.value="";
+            return false
+        }
+
+             
+         if(!x.t6.value.match(num))
+           {
+            alert('must fill a valid phone no');
+            x.t5.focus();
+            x.t5.value="";
+            return false
+        }else if(x.t6.value.length!=10){
+         alert('must fill a 10 digits');
+            x.t6.focus();
+            x.t6.value="";
+            return false
+        }
+            
+        if(!x.t9.value.match(num))
+           {
+            alert('must fill a valid aadhar no');
+            x.t9.focus();
+            x.t9.value="";
+            return false
+        }else if(x.t9.value.length!=12){
+         alert('must fill a 12 digits');
+            x.t9.focus();
+            x.t9.value="";
+            return false
+        }
+     }
+
+ </script>
+ <div class="panel panel-skin">
+                    <div class="panel-heading">
+                      <h3 class="panel-title"><span class="fa fa-pencil-square-o"></span> Create An Account <small>(New User!)</small></h3>
+                    </div>
+                    <div class="panel-body">
+                      <div id="sendmessage">Your message has been sent. Thank you!</div>
+                      <div id="errormessage"></div>
+
+                      <form  onsubmit="return val(this)" action="{% url 'register_user' %}" method="post" role="form" >
+                         {% csrf_token %}
+                          <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label> Name</label>
+                              <input type="text" name="t1" required id="first_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>DOB</label>
+                              <input type="date" name="t2" required id="" class="form-control input-md" >
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+ <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label> Address</label>
+                              <textarea name="t3" id="caddress"required class="form-control input-md" data-rule="required" data-msg="Please fill this field"></textarea>  <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Gender</label>
+                              <select type="text" name="t4" required id="paddress" class="form-control input-md" data-rule="required" data-msg="Please fill this field">
+                             <option>Male</option>
+                             <option>Female</option>
+                              </select>  <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Email</label>
+                              <input type="email" required name="t5" id="email" class="form-control input-md" data-rule="email" data-msg="Please enter a valid email">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Phone number</label>
+                              <input type="number" required name="t6" id="phone" maxlength="10"   pattern=".{10}"  class="form-control input-md" data-rule="required" data-msg="The phone number is required">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Aadhar</label>
+                              <input type="number" required name="t9" id="" maxlength="12"   pattern=".{12}"  class="form-control input-md" >
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>State</label>
+                              <input type="text" required name="t10" id="phone" class="form-control input-md" data-rule="required" data-msg="The phone number is required">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>District</label>
+                              <input type="text" required name="t11" id="" class="form-control input-md" >
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Village</label>
+                              <input type="text" required name="t12" id="" class="form-control input-md" >
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+                      <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>UserName</label>
+                              <input type="text" required name="t7" id="" class="form-control input-md" >
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Password</label>
+                              <input type="password" required name="t8" id="" class="form-control input-md" >
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <input type="submit" value="Register" class="btn btn-skin btn-block btn-lg">
+
+                        <p class="lead-footer"><a href="{% url 'index' %}">Already Has An Account!</a></p>
+
+                      </form>
+                    </div>
+                  </div>
+ {% endblock %}

@@ -1,0 +1,185 @@
+{% extends "staffhead.html" %}
+{% load static %}
+{% block content %}
+
+<!-- end app-navbar -->
+                <!-- begin app-main -->
+                <div class="app-main" id="main">
+                    <!-- begin container-fluid -->
+                    <div class="container-fluid">
+                        <!-- begin row -->
+                        <div class="row">
+                            <div class="col-md-12 m-b-30">
+                                <!-- begin page title -->
+                                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                                    <div class="page-title mb-2 mb-sm-0">
+                                        <h1>Manage Works</h1>
+                                    </div>
+                                    <div class="ml-auto d-flex align-items-center">
+                                        <nav>
+                                            <ol class="breadcrumb p-0 m-b-0">
+                                                <li class="breadcrumb-item">
+                                                    <a href="#"><i class="ti ti-home"></i></a>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    Home
+                                                </li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Manage Alloted Work</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- end page title -->
+                            </div>
+                        </div>
+                        
+            {% if msg != ""%}
+            <script>alert("{{msg}}");</script>
+            {% endif %}
+                        <!-- end row -->
+                        <!-- begin row -->
+                        <div class="row editable-wrapper" style="width:100%">
+                            <div class="col-lg-12 ">
+                                <div class="card card-statistics">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table id="table" class="table display responsive nowrap table-light table-bordered">
+                                                <thead class="bg-primary text-white">
+         
+         
+         
+                                                    <th  >Sl.No.</th>
+                                                    <th  >User Details</th>
+        <th >Subject</th>
+        <th  >Details</th>
+        <th  >Date</th>
+        <th  >Incident Details</th>
+        <th  >Status</th>
+      
+        <th >#</th>
+        <th >#</th>
+        <th >#</th>
+    </tr>
+    </thead>
+    {% for datas in data %}
+  
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{datas.user.User_name}}</td>
+        <td>{{datas.Complaint_subject}}</td>
+        <td>{{datas.Complaint_message}}</td>
+        <td>{{datas.Complaint_date}}</td>
+        <td>{{datas.incident_date}}
+<br>
+{{datas.incident_type}}
+
+
+        </td>
+        <td>{{datas.Complaint_reply}}</td>
+      
+       
+        <td><a href="#" data-toggle='modal' data-target='#edit-{{datas.Complaint_id}}'class="btn btn-info" >Update Status</a></td><td>
+		 {% if datas.staff != " "%}
+        <a href="#" data-toggle='modal' data-target='#mail-{{datas.Complaint_id}}'class="btn btn-info" >Mail</a>
+    </td><td>
+		<a href="{% url 'view_mails_staff'%}?id={{datas.Complaint_id}}" class="btn btn-info" >View Mails</a>
+		
+		
+        {% endif %}
+		
+	</td>
+	
+       
+    
+      
+        </tr>
+
+       
+        <!-- Modal parent details -->
+<div id="edit-{{datas.Complaint_id}}" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+ 
+ <!-- Modal content-->
+ <div class="modal-content">
+ <form role="form" action="{% url 'Update_status' %}" method="post">
+     {% csrf_token %}
+     <input type="hidden" name="t1" readonly value="{{datas.Complaint_id}}"/>
+                   
+ <div class="modal-body">
+ <div class="form-group">
+ <label for="email">Update Status:</label>
+ <textarea class="form-control" name="s1"></textarea>
+ 
+ </div>
+ 
+ 
+ </div>
+ <div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ <input type="submit" class="btn btn-default" value="Submit"/>
+ </div>
+ </div>
+ </form>
+ </div>
+ </div>
+
+
+
+<div id="mail-{{datas.Complaint_id}}" class="modal fade" role="dialog">
+ <div class="modal-dialog">
+ 
+ <!-- Modal content-->
+ <div class="modal-content">
+ <form role="form" action="{% url 'send_mail_staff' %}" method="post">
+     {% csrf_token %}
+     <input type="hidden" name="t1" readonly value="{{datas.Complaint_id}}"/>
+                   
+ <div class="modal-body">
+ <div class="form-group">
+ <label for="email">Message:</label>
+ <textarea class="form-control" name="s1"></textarea>
+ 
+ </div>
+ 
+ 
+ </div>
+ <div class="modal-footer">
+ <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+ <input type="submit" class="btn btn-default" value="Submit"/>
+ </div>
+ </div>
+ </form>
+ </div>
+ </div>
+
+
+
+
+
+        {% endfor %}
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </div>
+                    <!-- end container-fluid -->
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+{% endblock %}

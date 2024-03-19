@@ -1,0 +1,310 @@
+{% extends "adminhead.html" %}
+{% load static %}
+{% block content %}
+      <!-- begin app-main -->
+      <div class="app-main" id="main">
+        <!-- begin container-fluid -->
+        <div class="container-fluid">
+            <!-- begin row -->
+            
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+              <div class="alert alert-success"> {{message }}</div>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <!-- end row -->
+            <!-- start Validation row -->
+ <!-- start Validation row -->
+ <div class="row formavlidation-wrapper" style="width:750px">
+    <div class="col-xl-6">
+        <div class="card card-statistics">
+            <div class="card-header">
+                <div class="card-heading">
+                    <h4 class="card-title">Register Training</h4>
+                </div>
+            </div>
+            <div class="card-body">
+               
+                    <form id="myform" method="post" class="form-horizontal"  action="{% url 'tra_Register' %}">
+                        {% csrf_token %}
+                    <div class="form-group">
+                        <label class="control-label" for="fname"> Name</label>
+                        <div class="mb-2">
+                            <input type="text" class="form-control" id="" name="t1" placeholder="" />
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label class="control-label" for="fname"> Subject</label>
+                        <div class="mb-2">
+                            <input type="text" class="form-control" id="" name="t2" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="fname"> Date</label>
+                        <div class="mb-2">
+                            <input type="date" class="form-control" id="" name="t3" placeholder="" />
+                        </div>
+                    </div>
+                   
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="uemail"> Details</label>
+                        <div class="mb-2">
+                            <textarea  class="form-control" id="" name="t4" placeholder="" ></textarea>
+                        </div>
+                    </div>
+                 
+                    <div class="form-group">
+                        <label class="control-label" for="fname"> Resourse Person</label>
+                        <div class="mb-2">
+                            <input type="text" class="form-control" id="" name="t5" placeholder="" />
+                        </div>
+                    </div>
+                 
+                   
+                      
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" name="signup" value="Sign up">Register</button>
+                    </div>
+                </form>
+                <script src="{% static 'assets/Validation/jquery-1.11.1.min.js' %}"></script>
+                <script src="{% static 'assets/Validation/jquery_validate.js' %}"></script>
+                <script src="{% static 'assets/Validation/additional_validate.js' %}"></script>
+                <script>
+                (function ($, W, D)
+                {
+                var JQUERY4U = {};
+                JQUERY4U.UTIL =
+                {
+                setupFormValidation: function ()
+                {
+                $.validator.addMethod(
+                "regex",
+                function(value, element, regexp) {
+                var check = false;
+                return this.optional(element) || regexp.test(value);
+                },
+                "Not a valid Input."
+                );
+                
+                //form validation rules
+                $("#myform").validate({
+                rules: {
+                
+                    t1: {
+                                          required: true,
+                                     
+                                          minlength: 3,
+                
+                                        },
+                                    
+                                    
+                                        t2: {
+                                          required: true,
+                
+                
+                                        },
+                                      
+                                        t3: {
+                                          required: true,
+                
+                
+                                        },
+                                        t4: {
+                                          required: true,
+                
+                
+                                        }, 
+                                        t5: {
+                                          required: true,
+                
+                
+                                        },
+                                      },
+                                      messages: {
+                
+                                        
+                      },
+                submitHandler: function (form) {
+                form.submit();
+                }
+                });
+                }
+                }
+                //when the dom has loaded setup form validation rules
+                $(D).ready(function ($) {
+                JQUERY4U.UTIL.setupFormValidation();
+                });
+                })(jQuery, window, document);
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function getDateDiffInYears(date1, date2) {
+    var dateParts1 = date1.split('-')
+    , dateParts2 = date2.split('-')
+    , d1 = new Date(dateParts1[0], dateParts1[1]-1, dateParts1[2])
+    , d2 = new Date(dateParts2[0], dateParts2[1]-1, dateParts2[2])
+    
+    return new Date(d2 - d1).getYear() - new Date(0).getYear() + 1;
+    }
+    function formatDate(date) {
+    var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+    
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    
+    return [year, month, day].join('-');
+    }
+    
+    function ageCalculator()
+    {
+    var sendDate =document.getElementById("date2").value;
+    var inputDate = new Date(sendDate);
+    // Get today's date
+    var todaysDate = new Date();
+    var date1 = formatDate(inputDate);
+    var date2 = formatDate(todaysDate);
+    // call setHours to take the time out of the comparison
+    if(inputDate.setHours(0,0,0,0) >= todaysDate.setHours(0,0,0,0)) {
+    alert('The date of birth date should not be greater than or equal to today!');
+    }
+    var diff = getDateDiffInYears(date1,date2);
+    if(diff<18)
+    {
+    alert("Your age should not be less than 18 years");
+    $("#date2").val('');
+    $("#date2").focus();
+    }
+    
+    }
+    function aunamess()
+    {
+    var x =document.getElementById("nam").value;
+    var letters = /^[A-Z a-z ]+$/
+    // Get today's date
+    if(!x.match(letters))
+    {
+     alert("Name should be Aphabet");
+    $("#nam").val('');
+    }
+    
+    }
+    function usernamess()
+    {
+    var x =document.getElementById("usernam").value;
+    var letters = /^[A-Z a-z ]+$/
+    // Get today's date
+    if(!x.match(letters))
+    {
+     alert("Name should be Aphabet");
+    $("#usernam").val('');
+    }
+    
+    }
+    function auphoness()
+    {
+    var x =document.getElementById("phn").value;
+    var letters=/^\d{10}$/;
+    if(!x.match(letters))
+    {
+    alert("please Add 10 Digit phone number");
+    $("#phn").val('');
+    }
+    
+    }
+    function userphoness()
+    {
+    var x =document.getElementById("userphn").value;
+    var letters=/^\d{10}$/;
+    if(!x.match(letters))
+    {
+    alert("please Add 10 Digit phone number");
+    $("#userphn").val('');
+    }
+    
+    }
+    function auemailss()
+    {
+    var x =document.getElementById("ema").value;
+    var atpos=x.indexOf("@");
+    var dotpos=x.lastIndexOf(".");
+    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+    {
+    alert("Not a valid e-mail address");
+    $("#ema").val('');
+    }
+    
+    }
+    function usermailss()
+    {
+    var x =document.getElementById("userema").value;
+    var atpos=x.indexOf("@");
+    var dotpos=x.lastIndexOf(".");
+    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
+    {
+    alert("Not a valid e-mail address");
+    $("#userema").val('');
+    }
+    
+    }
+    function aupass()
+    {
+    var x =document.getElementById("autpass").value;
+    
+    // Get today's date
+    if(x.length >8||x.length <8)
+    {
+     alert("Password should be 8 Character in length");
+    $("#autpass").val('');
+    }
+    
+    }
+    function usspass()
+    {
+    var x =document.getElementById("uspass").value;
+    
+    // Get today's date
+    if(x.length >8||x.length <8)
+    {
+     alert("Password should be 8 Character in length");
+    $("#uspass").val('');
+    }
+    
+    }
+    </script>
+    
+    
+    
+    
+    
+    {% endblock %}

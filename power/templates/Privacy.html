@@ -1,0 +1,76 @@
+{% extends role %}
+{% load static %}
+{% block content %}
+
+  <!-- begin app-main -->
+  <div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+      
+
+        {% if msg != ""%}
+<script>alert("{{msg}}");</script>
+{% endif %}
+        <!-- end row -->
+        <!-- start Validation row -->
+<!-- start Validation row -->
+<div class="row formavlidation-wrapper" style="width:1000px">
+<div class="col-xl-6">
+    <div class="card card-statistics">
+        <div class="card-header">
+            <div class="card-heading">
+                <h4 class="card-title">Privacy</h4>
+            </div>
+        </div>
+        <div class="card-body">
+           
+<form  method="post" action="{%url 'Privacy' %}" onsubmit="return chh(this); ">
+    {% csrf_token %}
+<table class="table table-responsive table-striped">
+<tr>
+    <td>Current Password</td>
+    <td><input type="password" class="form-control"  placeholder="Current Password"  name="t1" required="" /></td>
+</tr>
+<tr>
+    <td>New Password</td>
+    <td><input type="password" class="form-control"  placeholder="New Password"  name="t2" required=""/></td>
+</tr>
+<tr>
+    <td>Re-Enter Password</td>
+    <td><input type="password" placeholder="Re-Enter Password"   class="form-control" name="t3" required=""/></td>
+</tr>
+<tr>
+  
+    <td colspan="2"><input type="submit" style="float:right;height: 50px; width: 100px;" class="btn  btn-success"  name="b" value="Change"/></td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+</div>
+</div>
+
+<script> 
+    function chh(v)
+    {
+        if(v.p2.value!=v.p3.value)
+        {
+            alert("password missmatch ");
+            v.p2.value="";
+             v.p3.value="";
+              v.p2.focus();
+              return false;
+        }
+        return true;
+    }
+</script>
+
+{% endblock %}

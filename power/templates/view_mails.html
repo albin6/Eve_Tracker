@@ -1,0 +1,148 @@
+{% extends "userhead.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    .scrollbar {
+        padding: 0.5rem 1.5rem !important;
+    }
+</style>
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-30">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Mail</h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="#">
+                                        <i class="ti ti-home"></i>
+                                    </a>
+                                </li>
+                                <li aria-current="page" class="breadcrumb-item active text-primary">
+                                    Mail
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!--mail-read-contant-start-->
+        <div class="row" style="width:700px">
+            <div class="col-12">
+                <div class="card card-statistics">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+
+                            <div class="col-xl-12 col-xxl-9 border-md-t">
+                                <div class="app-chat-msg">
+                                    <div
+                                        class="d-flex align-items-center justify-content-between p-3 px-4 border-bottom">
+                                        <div class="app-chat-msg-title">
+                                            <h4 class="mb-0">View Mail Details</h4>
+                                           
+                                        </div>
+                                        <div class="app-chat-msg-btn">
+                                          
+
+                                            <!-- <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
+                                                                <h6>Action</h6>
+                                                            
+                                                                <a class="dropdown-item" href="javascript:void(0)">
+                                                                    <i class="ti ti-trash pr-2"></i>Delete
+                                                                </a>
+                                                            </div>-->
+                                        </div>
+                                    </div>
+
+                                    {% for datas in data %}
+                                    <div class="scrollbar scroll_dark app-chat-msg-chat p-4">
+                                        {% if datas.staff != null %}
+                                        <div class="chat">
+                                          
+                                            <div class="text-center py-4">
+                                                <h6> {{datas.staff.staff_name}}</h6>
+                                            </div>
+                                            <div class="chat-msg">
+
+                                                <div class="chat-msg-content">
+                                                    <p> {{datas.mail_message}}</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        {% elif datas.user != null %}
+                                        
+                                        <div class="chat chat-left justify-content-end">
+                                           
+                                            <div class="chat-msg">
+                                                <div class="chat-msg-content mb-1">
+
+                                                    <p>{{datas.mail_message}}</p>
+                                                </div>
+                                                <div class="" style="text-align: right; width: 100%;">
+                                                    <span style="text-align: right; width: 100%;">{{datas.mail_date}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+
+
+
+
+
+
+
+
+
+
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                <!--<div class="app-chat-type">
+                                                    <div class="input-group mb-0 ">
+                                                        <div class="input-group-prepend d-none d-sm-flex">
+                                                            <span class="input-group-text">
+                                                                    <i class="fa fa-smile-o">
+                                                                    </i>
+                                                                </span>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Type here..." type="text">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                    <i class="fa fa-paper-plane"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--mail-read-contant-end-->
+    </div>
+    <!-- end container-fluid -->
+</div>
+<!-- end app-main -->
+
+
+
+
+
+
+{% endblock %}
